@@ -1,0 +1,116 @@
+{
+  "lab": {
+    "title": "ML: Model Stealing",
+    "slug": "joan-007",
+    "description": "A lab where users replicate a black-box model through queries and train a surrogate using stolen outputs.",
+    "content": "Understand how model stealing attacks work and their implications on model security.",
+    "type": "intermediate",
+    "template": "standard",
+    "api_url": "http://3.86.167.22.8017",
+    "points": 30
+  },
+  "contents": [
+    {
+      "content": "<h2>Introduction to Model Stealing Attack</h2><p><strong>Training a model is costly</strong>: collecting a mass of relevant samples, preprocessing data to solve a specific problem, finding an effective machine learning model, and providing it with the necessary computing power...</p><p><em>What if a competitor could steal this model, which you have just designed, without any particular effort?</em></p><h2>Definition of Model Stealing</h2><p><strong>Model stealing</strong>, also known as <em>model extraction</em>, is the practice of reverse engineering a machine learning model owned by a third party without explicit authorization.</p><p>Attackers don’t need direct access to the model’s parameters or training data to accomplish this. Instead, they often interact with the model via its API or any public interface, making queries (i.e., sending input data) and receiving predictions (i.e., output data).</p><p>By systematically making numerous queries and studying the outputs, attackers can build a new model that closely approximates the target model’s behavior.</p><h2>Types of Vulnerable AI Models</h2><h3>1. Black-box Models</h3><p>Models like deep neural networks fall under the category of black-box algorithms, where the internal workings are complex and not easily interpretable. The allure of these advanced models makes them prime targets for attackers. Their complexity not only represents high value but also offers a challenging puzzle that many hackers are willing to solve. Such models are often employed in cutting-edge applications like natural language processing, self-driving vehicles, and high-frequency trading systems.</p><h3>2. Publicly Accessible Models</h3><p>Any machine learning model with a public-facing API or web interface is inherently more vulnerable to model stealing. Because these models are designed to be easily accessible, they offer attackers the opportunity to make queries and collect data without the need for internal network penetration. These models can range from natural language processing services to image recognition APIs, making them popular targets for theft.</p><h3>3. Simple Models</h3><p>Ironically, simpler machine learning models like linear regression, decision trees, or k-NN are also particularly vulnerable. Their straightforward algorithms make them easier to approximate, often requiring fewer queries for an attacker to reverse-engineer them successfully. These models find frequent use in simpler tasks such as basic classification problems, weather prediction, and recommendation systems, and their simplicity makes them quicker and less noticeable targets for theft.</p><h3>4. Models Without Rate Limiting or Monitoring</h3><p>Deployed machine learning models lacking robust security features like rate limiting and access pattern monitoring are sitting ducks for attackers. Without these security barriers, hackers can make a large number of queries in a short period, collecting the data they need to steal the model without raising any alarms. Unfortunately, these kinds of vulnerable deployments are often found in early-stage startups or projects where security awareness and resources are limited.</p>",      
+      "type": "narrative",
+      "content_id": 1,
+      "slug": "joan-007_1",
+      "page": 1,
+      "order": 1,
+      "title": "Introduction",
+      "progress": 20,
+      "depends_on_finish_lab": false
+    },
+        {
+      "content": "<h2>Real-world Examples Where Model Stealing Has Occurred</h2><h3>1. Natural Language Processing Models</h3><p>One of the sectors that has been hit hard by model stealing is the fast-growing field of Natural Language Processing (NLP). Companies invest heavily in creating sophisticated chatbot technologies that can understand and respond to human queries with unprecedented accuracy. The theft of these models can be devastating. There have been instances where companies were shocked to find mirror-image chatbots on competitor platforms, offering nearly identical responses and conversation flows as their proprietary models. The theft undermines years of R&D investment and provides unauthorized players a shortcut to a competitive edge.</p><h3>2. Game Playing Algorithms</h3><p>Online gaming is another domain that often becomes a battleground for intellectual property theft. Game developers invest in building complex algorithms to make bot players behave more human-like in strategy and combat games. These algorithms can be stolen and deployed in unauthorized games, severely undermining the unique selling propositions of the original games. This not only erodes the competitive advantage of the original developers but also saturates the market with indistinguishable products, making it harder for consumers to make informed choices.</p><h3>3. Healthcare Algorithms</h3><p>In an industry as critical as healthcare, the theft of diagnostic algorithms has far-reaching consequences. Advanced machine learning models are used to interpret medical data, make predictions, and even suggest treatment options. There have been reported cases where such diagnostic algorithms were reverse-engineered and replicated, potentially risking not just intellectual property but also patient data. Such thefts could lead to misdiagnoses if the stolen models are not as rigorously validated as the originals, raising serious ethical and legal concerns.</p><h3>4. Recommendation Systems</h3><p>The retail and streaming industries heavily rely on their recommendation algorithms to personalize user experiences and maximize sales or engagement. These algorithms, often the result of years of iterative development and fine-tuning, have been found to replicate on competing platforms. Companies have discovered copycat algorithms that generate suspiciously similar product or content recommendations, thereby diluting their competitive edge and market uniqueness. The theft of such algorithms is particularly damaging because they are directly tied to customer engagement and revenue streams.</p><h2>The Techniques Behind Model Stealing</h2><h3>1. Query-based Model Stealing</h3><p>One of the most common methods employed for model stealing is the query-based technique. In this approach, attackers make a plethora of queries, sending various inputs to the target model and recording the corresponding outputs. By accumulating a large dataset of input-output pairs, they train a surrogate model to mimic the behavior of the target model. The surrogate can then be further refined to approximate the original model as closely as possible, effectively “stealing” its capabilities without ever having direct access to its parameters or training data.</p><h3>2. Model Inversion</h3><p>Model inversion is a more sophisticated technique whereby attackers use the output from the target model to reconstruct the input data that could have led to that particular output. By doing so repeatedly, they essentially reverse-engineer the model’s decision-making process, thereby gaining insights into its internal workings. This allows them to create a replicated model that behaves very similarly to the target model, even capable of generating the same or similar outputs for a given set of inputs.</p><h3>3. Transfer Learning</h3><p>Transfer learning techniques involve taking a pre-trained model and fine-tuning it to approximate the behavior of the target model. Attackers can begin with a similar, publicly available model as a starting point and fine-tune it using the query-based method. By doing this, they can drastically reduce the amount of time and data needed to approximate the target model, making it a highly effective method for model stealing.</p><h3>4. Other Techniques</h3><p>Aside from the major techniques outlined above, attackers also employ other methods like data augmentation and ensemble methods to improve the performance of their stolen models. Data augmentation involves artificially expanding the dataset using transformations, which helps in fine-tuning the stolen model. Ensemble methods combine the predictions from multiple stolen or approximated models to produce a more accurate output, essentially leveraging the strengths of each individual model to improve overall performance.</p><h2>Conclusion</h2><p>The landscape of cybersecurity has expanded to include not just traditional systems but also sophisticated machine-learning models that are increasingly powering modern technology.</p><p>Model stealing represents a massive threat to industries across the board—from healthcare and finance to retail and gaming. As our reliance on AI grows, so does the need for robust security measures to protect these valuable assets.</p><p>From the intricate techniques employed by attackers to the myriad vulnerabilities that make models susceptible to theft, understanding model stealing—and actively defending against it—is critical.</p>",      
+      "type": "narrative",
+      "content_id": 2,
+      "slug": "joan-007_2",
+      "page": 2,
+      "order": 1,
+      "title": "Real World Scenarios",
+      "progress": 40,
+      "depends_on_finish_lab": false
+    },
+    {
+      "content": "<h2>The ML: Model Stealing Lab</h2><h4>Overview</h4><p>In this lab, you will explore model stealing attacks. The focus is on utilizing a TensorFlow model to understand the impact of unauthorized model replication.</p><h4>Objectives</h4><ul><li>Understand how model stealing attacks work and their impact.</li><li>Execute a model stealing attack.</li><li>Analyze the stolen model’s performance.</li><li>Explore defensive strategies on how mitigate model theft.</li></ul><h4>Mission Briefing:</h4><p>You are an AI investigator recruited to uncover the mechanics of a model stealing attack. Your target? A high-performing black-box machine learning model. Your job is to simulate the theft, analyze the clone, and compare its performance with the original.<h2>Task 1: The Hack — Simulate the Attack in Colab</h2><h4>Objective:</h4><p>Perform the model stealing</p><h4>What You'll Do:</h4><p>1. Click the 'Launch Colab for Model Stealing' button.</p><p>In the notebook:</p><ul><li>Query with various inputs to get outputs (probabilities or class labels).</li><li>Train a model to mimic the outputs — this is your stolen_model.h5.</li><li>Download from Google Colab this cloned model after training.</li></ul><p>You will query the model hosted in the lab using this endpoint:<strong>POST /predict</strong></p>",
+      "type": "narrative",
+      "content_id": 3,
+      "slug": "joan-007_3",
+      "page": 3,
+      "order": 1,
+      "title": "Lab Overview",
+      "progress": 60,
+      "depends_on_finish_lab": false
+    },
+    {
+      "content": "<h2>Task 2: The Analysis Room — Upload and Compare Models</h2><h4>Objective:</h4><p>Test whether your cloned model performs as well as the original on unseen data.</p><h4>What You'll Do:</h4><ul><li>Upload stolen_model.h5 file on theithe respective upload button</li><li>Once uploaded it will check the comparison of their accuracies.</li></ul><div class='code'>stolen_file = st.file_uploader('Upload Stolen Model', type=['h5'])\nif stolen_file:\n\ttry:\n\t\tst.markdown('### Comparing Model Accuracies...')\n\n\t\t# Load fixed original model from disk\n\t\toriginal_model = load_model('original_model.h5')\n\n\t\t# Load uploaded stolen model\n\t\tstolen_model = load_keras_model(stolen_file)\n\n\t\t# Generate shared test set\n\t\tX_test, y_test = generate_test_data()\n\n\t\t# Evaluate\n\t\tacc_orig, acc_stolen = evaluate_models(original_model, stolen_model, X_test, y_test)\n\n\t\t# Results\n\t\t.success('Models evaluated successfully.')\n\t\tst.metric('Original Model Accuracy', f'{acc_orig:.4f}')\n\t\tst.metric('Stolen Model Accuracy', f'{acc_stolen:.4f}')\n\n\texcept Exception as e:\n\n\t\tst.error(f' Error during comparison: {e}')</div>",
+      "type": "interactive",
+      "content_id": 4,  
+      "slug": "joan-007_4",
+      "page": 4,
+      "order": 1,
+      "title": "Challenge",
+      "progress": 90,
+      "depends_on_finish_lab": false
+    },
+    {
+      "content": "<h2>Best Practices for Preventing Model Stealing</h2><p>Protecting machine learning models from theft necessitates a multi-layered approach to security.</p><p>One strategy is <strong>obfuscation</strong>, where the true complexity or finer details of the model are hidden, making it more challenging for attackers to reverse-engineer.</p><p><strong>Sample code snippet of Obfuscation</strong></p><div class='code'>import numpy as np  # Used for generating noise and numerical operations\n\n# Simulated model prediction function\ndef dummy_model(input_text):\n\t# Returns fixed probabilities as a placeholder for actual model output\n\treturn np.array([0.7, 0.2, 0.1])\n\n# Adds small random noise to model output to obfuscate results\ndef obfuscate_output(probs, noise_level=0.01):\n\tnoise = np.random.normal(0, noise_level, size=probs.shape)  # Generate small Gaussian noise\n\tnoisy = probs + noise  # Add noise to original prediction\n\tnoisy = np.clip(noisy, 0, 1)  # Ensure values stay between 0 and 1\n\treturn noisy / noisy.sum()  # Re-normalize to sum to 1 for valid probability distribution\n\n# Example usage\noriginal = dummy_model('this movie was great!')  # Simulated original output\nobfuscated = obfuscate_output(original)  # Apply obfuscation\n\nprin('Original:', original.round(3))     # Print original prediction\nprint('Obfuscated:', obfuscated.round(3)) # Print slightly altered output</div><p><strong>Rate limiting</strong> is another effective technique, which involves setting restrictions on the number of queries that can be made to the model within a certain timeframe, thereby slowing down or disrupting a would-be attacker’s efforts.</p><p><strong>Sample code snippet of Rate Limiting</strong></p><div class='code'>import time  # Used to get timestamps\nfrom collections import defaultdict  # Helps track requests per user\n\n# Rate Limiter class to prevent excessive querying of the model\nclass RateLimiter:\n\tdef __init__(self, max_calls, period_seconds):\n\t\tself.max_calls = max_calls                  # Max requests allowed per period\n\t\tself.period = period_seconds                # Time window (in seconds)\n\t\tself.calls = defaultdict(list)              # Store timestamps of requests per user\n\n\t# Check if user is allowed to make another request\n\tdef is_allowed(self, user_id):\n\t\tnow = time.time()                           # Current timestamp\n\t\twindow = self.calls[user_id]                # Get user's previous request times\n\n\t\t# Keep only recent calls within the time window\n\t\twindow = [t for t in window if now - t < self.period]\n\n\t\tif len(window) < self.max_calls:\n\t\t\twindow.append(now)                      # Log this call\n\t\t\tself.calls[user_id] = window            # Update call history\n\t\t\treturn True                    # Allow the request\n\t\treturn False                                # Deny the request (rate limit hit)\n\n# Example usage\nlimiter = RateLimiter(max_calls=3, period_seconds=10)  # Allow 3 calls per 10 seconds\n\nfor i in range(5):\n\tallowed = limiter.is_allowed('user_1')  # Simulate user request\n\tprint(f'Request {i+1}: {'Allowed' if allowed else '🚫 Blocked'}')\n\ttime.sleep(2)  # Wait 2 seconds before next request</div>",
+      "type": "narrative",
+      "content_id": 5,
+      "slug": "joan-007_5",
+      "page": 5,
+      "order": 1,
+      "title": "Model Stealing Countermeasures",
+      "progress": 100,
+      "depends_on_finish_lab": true
+    }
+  ],
+  "hints": [
+        {
+            "hint": "",
+            "points": 10
+        }
+  ],
+  "endpoints": [
+    {
+      "endpoint": "/compare",
+      "description": "Compare the original model and the stolen model based on accuracy and prediction similarity.",
+      "type": 1,
+      "method": "POST"
+    },
+    {
+      "endpoint": "/predict",
+      "description": "Will use for prediction and a endpoint that the user will going to send a queries",
+      "type": 0,
+      "method": "POST"
+    }
+  ],
+  "assets": [
+    {
+    "key": "colab_attack_notebook",
+    "value": "https://colab.research.google.com/drive/182PZ7qdyq3Yest7fqcJ3DqqYkjMTkyxm#scrollTo=ip8wE08M6OwQ",
+    "type": "url",
+    "api_endpoint": ""
+    },
+    {
+      "key": "API_KEY",
+      "value": "1db6690497cceb60094022fee894b23f81ae30a11c25a7bccf942bcea6628df6",
+      "type": "str",
+      "api_endpoint": ""
+    }
+  ],
+  "content_endpoints": [
+    {
+      "content_order": 4,
+      "endpoint": "/compare"
+    }
+  ],
+  "endpoint_user_inputs": [
+    {
+      "endpoint": "/compare",
+      "field_name": "file",
+      "field_type": "file"
+    }
+  ]
+}
