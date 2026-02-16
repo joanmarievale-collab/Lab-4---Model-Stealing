@@ -50,7 +50,7 @@ X_test, y_test = load_test_data()
 # --------------------------
 @st.cache_resource
 def load_original_model():
-    return load_model("backend_model.h5")  # Must be placed in the same folder
+    return load_model("model-name")  
 
 # --------------------------
 # Load Uploaded Stolen Model
@@ -75,14 +75,14 @@ def evaluate_model(model, X_test, y_test):
 # Streamlit UI
 # --------------------------
 
-st.title("🧠 Model Stealing Lab")
+st.title("Model Stealing Lab")
 
 st.markdown("""
 Welcome to the **Model Stealing Lab**. This lab demonstrates how to extract knowledge from a black-box machine learning model using adaptive querying techniques.
 
 ---
 
-### 🔐 Authentication Token
+### Authentication Token
 
 Use the token below when querying the black-box model API from your notebook:
 """)
@@ -94,7 +94,7 @@ This token is required in the `Authorization` header of your API requests.
 
 ---
 
-### 📡 Model API Endpoint
+### Model API Endpoint
 
 Query the model hosted in the lab backend:
 
@@ -103,28 +103,28 @@ POST /predict
             """)
 
 
-# 📓 Notebook Link
-st.markdown("### 🧪 Part 1: Perform Model Stealing")
+# Notebook Link
+st.markdown("### Part 1: Perform Model Stealing")
 
-st.link_button("📓 Open Adaptive Querying Notebook", "https://colab.research.google.com/drive/182PZ7qdyq3Yest7fqcJ3DqqYkjMTkyxm")
+st.link_button("Open Adaptive Querying Notebook", "https://colab.research.google.com/drive/182PZ7qdyq3Yest7fqcJ3DqqYkjMTkyxm")
 
 
 # --------------------------
-# 📤 Part 2: Upload & Evaluate Stolen Model
+# Part 2: Upload & Evaluate Stolen Model
 # --------------------------
 
 st.markdown("---")
-st.subheader("📤 Part 2: Upload Your Stolen Model")
+st.subheader("Part 2: Upload Your Stolen Model")
 
 uploaded_file = st.file_uploader("Upload your `stolen_model.h5`", type=["h5"])
-evaluate_button = st.button("✅ Upload and Compare to Original")
+evaluate_button = st.button("Upload and Compare to Original")
 
 if evaluate_button and uploaded_file:
     try:
         # Evaluate stolen model
         stolen_model = load_uploaded_model(uploaded_file)
         stolen_acc = evaluate_model(stolen_model, X_test, y_test)
-        st.success("✅ Stolen model evaluated successfully.")
+        st.success("Stolen model evaluated successfully.")
         st.metric("Stolen Model Accuracy", f"{stolen_acc:.4f}")
 
         # Evaluate original model
@@ -133,11 +133,12 @@ if evaluate_button and uploaded_file:
             original_acc = evaluate_model(original_model, X_test, y_test)
             st.metric("Original Model Accuracy", f"{original_acc:.4f}")
         except Exception as e:
-            st.warning("⚠️ Could not load original model for comparison.")
+            st.warning("Could not load original model for comparison.")
             st.error(str(e))
 
     except Exception as e:
-        st.error(f"❌ Error loading or evaluating stolen model: {e}")
+        st.error(f"Error loading or evaluating stolen model: {e}")
 
 elif evaluate_button and not uploaded_file:
-    st.warning("📂 Please upload a model file before clicking 'Upload and Compare'.")
+    st.warning("Please upload a model file before clicking 'Upload and Compare'.")
+
